@@ -232,3 +232,100 @@ navAnchors.forEach(anchor => {
     }
   });
 });
+
+/* =====================
+   UI/UX PROJECT SLIDESHOW MODAL
+   Opens via the "Open Project" buttons on the
+   Interactive Web Prototype card. Auto-advances on
+   a timer; any manual interaction (arrow, dot, swipe-
+   like click) pauses autoplay so it stops fighting
+   the user, then resumes after a short idle period.
+   ===================== */
+
+const uiuxModal        = document.getElementById('uiuxModal');
+const uiuxModalBackdrop= document.getElementById('uiuxModalBackdrop');
+const uiuxModalClose   = document.getElementById('uiuxModalClose');
+const uiuxSlides       = document.querySelectorAll('#uiuxSlides .uiux-slide');
+const uiuxDotBtns      = document.querySelectorAll('#uiuxDots .uiux-dot-btn');
+const uiuxPrevBtn      = document.getElementById('uiuxPrev');
+const uiuxNextBtn      = document.getElementById('uiuxNext');
+
+const UIUX_AUTOPLAY_MS = 3500;   // time between auto-advances
+const UIUX_RESUME_MS   = 6000;   // how long to wait after manual input before autoplay resumes
+
+let uiuxCurrent       = 0;
+let uiuxAutoplayTimer = null;
+let uiuxResumeTimer   = null;
+
+function uiuxShowSlide(index) {
+  uiuxCurrent = (index + uiuxSlides.length) % uiuxSlides.length;
+
+  uiuxSlides.forEach((slide, i) => slide.classList.toggle('active', i === uiuxCurrent));
+  uiuxDotBtns.forEach((dot, i) => dot.classList.toggle('active', i === uiuxCurrent));
+}
+
+function uiuxNextSlide() {
+  uiuxShowSlide(uiuxCurrent + 1);
+}
+
+function uiuxStartAutoplay() {
+  uiuxStopAutoplay();
+  uiuxAutoplayTimer = setInterval(uiuxNextSlide, UIUX_AUTOPLAY_MS);
+}
+
+function uiuxStopAutoplay() {
+  if (uiuxAutoplayTimer) {
+    clearInterval(uiuxAutoplayTimer);
+    uiuxAutoplayTimer = null;
+  }
+}
+
+/* called whenever the user manually navigates —
+   pause autoplay briefly so it doesn't yank the
+   slide away right after they picked one */
+function uiuxPauseThenResume() {
+  uiuxStopAutoplay();
+  if (uiuxResumeTimer) clearTimeout(uiuxResumeTimer);
+  uiuxResumeTimer = setTimeout(uiuxStartAutoplay, UIUX_RESUME_MS);
+}
+
+function openUiuxSlideshow() {
+  uiuxShowSlide(0);
+  uiuxModal.classList.add('open');
+  document.body.style.overflow = 'hidden'; // prevent background scroll while modal is open
+  uiuxStartAutoplay();
+}
+
+function closeUiuxSlideshow() {
+  uiuxModal.classList.remove('open');
+  document.body.style.overflow = '';
+  uiuxStopAutoplay();
+  if (uiuxResumeTimer) clearTimeout(uiuxResumeTimer);
+}
+
+uiuxModalClose.addEventListener('click', closeUiuxSlideshow);
+uiuxModalBackdrop.addEventListener('click', closeUiuxSlideshow);
+
+uiuxPrevBtn.addEventListener('click', () => {
+  uiuxShowSlide(uiuxCurrent - 1);
+  uiuxPauseThenResume();
+});
+
+uiuxNextBtn.addEventListener('click', () => {
+  uiuxShowSlide(uiuxCurrent + 1);
+  uiuxPauseThenResume();
+});
+
+uiuxDotBtns.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    uiuxShowSlide(i);
+    uiuxPauseThenResume();
+  });
+});
+
+/* close on Escape key */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && uiuxModal.classList.contains('open')) {
+    closeUiuxSlideshow();
+  }
+});
