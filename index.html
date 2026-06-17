@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maryam Yousaf — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <span class="nav-logo">Maryam Yousaf</span>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <div class="nav-pill" id="navPill"></div>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <!-- full-bleed photo on right side -->
+    <div class="hero-photo-panel">
+      <img src="mountain.jpeg" alt="Mountain view" class="hero-photo-bg" />
+      <div class="hero-photo-fade"></div>
+    </div>
+
+    <div class="hero-bg-blob blob1"></div>
+    <div class="hero-bg-blob blob2"></div>
+
+    <div class="hero-layout">
+      <!-- LEFT: text -->
+      <div class="hero-inner">
+        <div class="hero-eyebrow"><span></span> Software Engineering Student</div>
+        <h1 class="hero-name">Maryam<br /><em>Yousaf.</em></h1>
+        <p class="hero-subtitle">
+          I build <span class="typewriter-wrap"><span id="typewriter"></span><span class="cursor">|</span></span><br />
+          Currently at FAST-NUCES, Islamabad.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">View my work</a>
+          <a href="#contact" class="btn-outline">Get in touch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <!--
+          PHOTO OPTIONS — uncomment whichever you want:
+
+          Option A: Illustrated portrait (recommended for aesthetic/privacy)
+          <img src="illustration_portrait.webp" alt="Maryam Yousaf" class="about-photo" />
+
+          Option B: Purple selfie
+          <img src="profile_picture.jpg" alt="Maryam Yousaf" class="about-photo" />
+
+          Option C: LinkedIn photo
+          <img src="linkedin_pfp.jpeg" alt="Maryam Yousaf" class="about-photo" />
+        -->
+        <img src="Hero.jpeg" alt="Maryam Yousaf" class="about-photo" />
+        <div class="about-photo-deco"></div>
+      </div>
+      <div class="about-text reveal">
+        <h2 class="section-title" style="margin-bottom:0; margin-top:-0.5rem;">Hi, I'm Maryam.</h2>
+        <p>I'm a <strong>second-year Software Engineering student</strong> at FAST-NUCES Islamabad. I love building things that make me question my life choices.</p>
+        <p>My work ranges from C++ game development with SFML to frontend web development, and building a neural network from scratch in Python. I'm also exploring cybersecurity this summer, with a growing interest in <strong>UI/UX design</strong>.</p>
+        <p>When I'm not coding, you'll find me crocheting, reading, or meowing to cats.</p>
+        <div class="about-tags">
+          <span class="tag">Frontend</span>
+          <span class="tag">Game Development</span>
+          <span class="tag">UI/UX Design</span>
+          <span class="tag">Neural Networks</span>
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Crochet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">Projects</p>
+    <h2 class="section-title reveal">Things I've Been Building.</h2>
+    <p class="projects-intro reveal">A collection of software, game development, machine learning, and design projects built throughout my academic journey.</p>
+
+    <!-- TIER 1: Featured — Snow Bros (full width) -->
+    <div class="proj-featured reveal">
+      <div class="proj-thumb proj-thumb--featured">
+        <div class="proj-thumb-placeholder proj-thumb--snowbros">
+          <div class="ppa-grid-bg"></div>
+          <div class="ppa-chars">
+            <div class="ppa-char ppa-char--1"></div>
+            <div class="ppa-char ppa-char--2"></div>
+          </div>
+          <div class="ppa-snowball"></div>
+          <div class="ppa-platforms">
+            <div class="ppa-platform"></div>
+            <div class="ppa-platform ppa-platform--2"></div>
+          </div>
+          <span class="proj-thumb-label">Arcade Platformer · C++ & SFML</span>
+        </div>
+        <div class="proj-thumb-overlay">
+          <a href="snowbros.html" class="proj-overlay-btn">Open Project</a>
+        </div>
+      </div>
+      <div class="proj-featured-body">
+        <div class="proj-meta">
+          <span class="project-tag proj-tag--featured">Game Dev · Featured</span>
+          <span class="proj-year">2024</span>
+        </div>
+        <h3 class="project-title proj-featured-title">Snow Bros Remake</h3>
+        <p class="project-desc">Arcade-style platformer rebuilt in C++ and SFML — two players, sprite animations, tile-based physics, and a clean OOP architecture. Classic 1990 arcade gameplay, rebuilt from scratch.</p>
+        <div class="proj-footer">
+          <div class="project-stack">
+            <span class="stack-pill">C++</span>
+            <span class="stack-pill">SFML</span>
+            <span class="stack-pill">OOP</span>
+          </div>
+          <div class="proj-actions">
+            <a href="snowbros.html" class="proj-btn proj-btn--primary">Open Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: Secondary large cards -->
+    <div class="proj-tier2 reveal">
+
+      <div class="proj-secondary">
+        <div class="proj-thumb proj-thumb--secondary">
+          <div class="proj-thumb-placeholder proj-thumb--gaminghub">
+            <div class="ppa-hub-grid">
+              <div class="hub-cell hub-snake">
+                <div class="hub-snake-body"><div></div><div></div><div></div></div>
+                <span>Snake</span>
+              </div>
+              <div class="hub-cell hub-pong">
+                <div class="hub-pong-vis"><div class="hub-paddle"></div><div class="hub-ball"></div><div class="hub-paddle"></div></div>
+                <span>Ping Pong</span>
+              </div>
+              <div class="hub-cell hub-brick">
+                <div class="hub-brick-rows"><div class="hub-brick-row"><div></div><div></div><div></div></div><div class="hub-brick-row"><div></div><div></div><div></div></div></div>
+                <span>Brick Breaker</span>
+              </div>
+            </div>
+            <span class="proj-thumb-label">Multi-game Platform</span>
+          </div>
+          <div class="proj-thumb-overlay">
+            <a href="#" class="proj-overlay-btn">Open Project</a>
+          </div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-meta">
+            <span class="project-tag">Game Dev</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <h3 class="project-title">Gaming Hub</h3>
+          <p class="project-desc">A modular multi-game platform with Snake, Ping Pong, and Brick Breaker. Built on reusable OOP class hierarchies with a unified game loop and shared input-handling to eliminate duplication across all modules.</p>
+          <div class="proj-footer">
+            <div class="project-stack">
+              <span class="stack-pill">C++</span>
+              <span class="stack-pill">SFML</span>
+              <span class="stack-pill">OOP</span>
+            </div>
+            <div class="proj-actions">
+              <a href="#" class="proj-btn proj-btn--primary">Open Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-medium">
+        <div class="proj-thumb proj-thumb--medium">
+          <div class="proj-thumb-placeholder proj-thumb--nn">
+            <div class="nn-vis">
+              <div class="nn-layer nn-input">
+                <div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div>
+              </div>
+              <div class="nn-layer nn-hidden">
+                <div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div>
+              </div>
+              <div class="nn-layer nn-hidden2">
+                <div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div><div class="nn-node"></div>
+              </div>
+              <div class="nn-layer nn-output">
+                <div class="nn-node nn-node--out"></div>
+              </div>
+            </div>
+            <div class="nn-accuracy">96% · MNIST · 10k samples</div>
+            <span class="proj-thumb-label">Neural Network from Scratch</span>
+          </div>
+          <div class="proj-thumb-overlay">
+            <a href="#" class="proj-overlay-btn">Open Project</a>
+          </div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-meta">
+            <span class="project-tag">Machine Learning</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <h3 class="project-title">Neural Network from Scratch</h3>
+          <p class="project-desc">Multilayer perceptron with forward propagation, backpropagation, and mini-batch gradient descent — no ML frameworks. 96% accuracy on 10,000 MNIST test samples.</p>
+          <div class="proj-footer">
+            <div class="project-stack">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">NumPy</span>
+              <span class="stack-pill">MNIST</span>
+            </div>
+            <div class="proj-actions">
+              <a href="#" class="proj-btn proj-btn--primary">Open Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TIER 3: Standard small cards -->
+    <div class="proj-tier3 reveal">
+
+      <div class="proj-standard">
+        <div class="proj-thumb proj-thumb--standard">
+          <div class="proj-thumb-placeholder proj-thumb--uiux">
+            <div class="uiux-mockup">
+              <div class="uiux-bar"><div class="uiux-dot"></div><div class="uiux-dot"></div><div class="uiux-dot"></div></div>
+              <div class="uiux-hero-block"></div>
+              <div class="uiux-rows">
+                <div class="uiux-row"></div>
+                <div class="uiux-row uiux-row--short"></div>
+                <div class="uiux-nav"><div></div><div></div><div></div></div>
+              </div>
+            </div>
+            <span class="proj-thumb-label">Interactive Web Prototype</span>
+          </div>
+          <div class="proj-thumb-overlay">
+            <a href="#" class="proj-overlay-btn">Open Project</a>
+          </div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-meta"><span class="project-tag">UI/UX</span></div>
+          <h3 class="project-title">Interactive Web Prototype</h3>
+          <p class="project-desc">Figma wireframes translated into a responsive HTML/CSS site focused on visual hierarchy, intuitive navigation, and accessibility best practices.</p>
+          <div class="proj-footer">
+            <div class="project-stack">
+              <span class="stack-pill">Figma</span><span class="stack-pill">HTML</span><span class="stack-pill">CSS</span>
+            </div>
+            <div class="proj-actions">
+              <a href="#" class="proj-btn proj-btn--ghost">Open Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-standard">
+        <div class="proj-thumb proj-thumb--standard">
+          <div class="proj-thumb-placeholder proj-thumb--battleship">
+            <div class="bs-grid">
+              <div class="bs-cell bs-hit"></div><div class="bs-cell"></div><div class="bs-cell bs-ship"></div><div class="bs-cell"></div>
+              <div class="bs-cell"></div><div class="bs-cell bs-hit"></div><div class="bs-cell"></div><div class="bs-cell bs-ship"></div>
+              <div class="bs-cell bs-miss"></div><div class="bs-cell"></div><div class="bs-cell"></div><div class="bs-cell bs-hit"></div>
+              <div class="bs-cell"></div><div class="bs-cell bs-ship"></div><div class="bs-cell bs-miss"></div><div class="bs-cell"></div>
+            </div>
+            <span class="proj-thumb-label">Two-player Strategy</span>
+          </div>
+          <div class="proj-thumb-overlay">
+            <a href="#" class="proj-overlay-btn">Open Project</a>
+          </div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-meta"><span class="project-tag">Game Dev</span></div>
+          <h3 class="project-title">Battleship</h3>
+          <p class="project-desc">Two-player console strategy game with coordinate-based attacks, ship placement logic, and full input validation across all edge cases.</p>
+          <div class="proj-footer">
+            <div class="project-stack">
+              <span class="stack-pill">C++</span><span class="stack-pill">Console</span>
+            </div>
+            <div class="proj-actions">
+              <a href="#" class="proj-btn proj-btn--ghost">Open Project</a>
+              <a href="https://github.com/meowryam" target="_blank" rel="noopener" class="proj-btn proj-btn--github">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-standard">
+        <div class="proj-thumb proj-thumb--standard">
+          <div class="proj-thumb-placeholder proj-thumb--cafe">
+            <div class="cafe-features">
+              <div class="cafe-feat"><span class="cafe-icon">🧾</span><span>Order Tracking</span></div>
+              <div class="cafe-feat"><span class="cafe-icon">💰</span><span>Billing</span></div>
+              <div class="cafe-feat"><span class="cafe-icon">📦</span><span>Inventory</span></div>
+              <div class="cafe-feat"><span class="cafe-icon">📊</span><span>Sales Reports</span></div>
+            </div>
+            <span class="proj-thumb-label">Cafe Management System</span>
+          </div>
+          <div class="proj-thumb-overlay">
+            <a href="#" class="proj-overlay-btn">Open Project</a>
+          </div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-meta"><span class="project-tag">Systems</span></div>
+          <h3 class="project-title">Cafe Management System</h3>
+          <p class="project-desc">Menu-driven system with order processing, real-time inventory updates, billing, and monthly sales tracking. Applies inheritance, polymorphism, and operator overloading.</p>
+          <div class="proj-footer">
+            <div class="project-stack">
+              <span class="stack-pill">C++</span><span class="stack-pill">OOP</span>
+            </div>
+            <div class="proj-actions">
+              <a href="#" class="proj-btn proj-btn--ghost">Open Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label reveal">Skills</p>
+    <h2 class="section-title reveal">What I work with.</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Languages</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>C++</li>
+          <li><span class="skill-dot"></span>Python</li>
+          <li><span class="skill-dot"></span>HTML &amp; CSS</li>
+          <li><span class="skill-dot"></span>JavaScript</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Frameworks &amp; Tools</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>SFML</li>
+          <li><span class="skill-dot"></span>NumPy</li>
+          <li><span class="skill-dot"></span>Git &amp; GitHub</li>
+          <li><span class="skill-dot"></span>Visual Studio</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Design</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>Figma</li>
+          <li><span class="skill-dot"></span>Canva</li>
+          <li><span class="skill-dot"></span>UI/UX Prototyping</li>
+          <li><span class="skill-dot"></span>Visual Design</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Concepts</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>OOP &amp; Design Patterns</li>
+          <li><span class="skill-dot"></span>Game Development</li>
+          <li><span class="skill-dot"></span>Neural Networks</li>
+          <li><span class="skill-dot"></span>Cybersecurity (learning)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label reveal">Education</p>
+    <h2 class="section-title reveal">My academic journey.</h2>
+    <div class="edu-list">
+      <div class="edu-card reveal">
+        <div class="edu-year">2025 – 2029</div>
+        <div class="edu-info">
+          <p class="edu-degree">BS Software Engineering</p>
+          <p class="edu-school">FAST-NUCES, Islamabad</p>
+          <p class="edu-detail">GPA 3.52 · Dean's List · Merit Scholarship · Class Representative</p>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2023 – 2025</div>
+        <div class="edu-info">
+          <p class="edu-degree">FSC Pre-Engineering</p>
+          <p class="edu-school">Nishat Group of Schools and Colleges for Girls, Multan</p>
+          <p class="edu-detail">95%</p>
+        </div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2021 – 2023</div>
+        <div class="edu-info">
+          <p class="edu-degree">Matriculation — Science</p>
+          <p class="edu-school">Nishat Group of Schools and Colleges for Girls, Multan</p>
+          <p class="edu-detail">94%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-blob cb1"></div>
+    <div class="contact-blob cb2"></div>
+    <div class="contact-inner">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="section-title reveal">Let's talk.</h2>
+      <p class="contact-sub reveal">Whether it's a project, an opportunity, or just a conversation — I'd love to hear from you.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:maryamyyousaff@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a href="https://github.com/meowryam" target="_blank" rel="noopener" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/maryam-yousaf" target="_blank" rel="noopener" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="tel:03213373122" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.12 6.12l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Phone
+        </a>
+      </div>
+      <p class="contact-email reveal">maryamyyousaff@gmail.com</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Maryam Yousaf</span>
+    <span>Built with HTML, CSS &amp; JS</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
