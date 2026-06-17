@@ -574,54 +574,58 @@
 
     .gallery-layout {
       display: flex;
-      gap: 1rem;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
     }
 
-    /* Main image: fixed max width so it stays compact */
     .gallery-main {
-      border: 2px solid rgba(126,200,227,0.3);
-      border-radius: 16px;
-      overflow: hidden;
+      width: min(850px, 100%);
+      aspect-ratio: 817/605;
       background: #0a0f1e;
-      /* Use actual game window ratio ~4:3 */
-      aspect-ratio: 4/3;
-      flex: 0 0 auto;
-      width: min(560px, 60%);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(126,200,227,0.25);
+      box-shadow: 0 20px 50px rgba(28,15,46,.08);
     }
 
     .gallery-main-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
 
-    /* Vertical thumbnail strip on the right */
     .gallery-thumbs {
       display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      flex: 1;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      max-width: 850px;
     }
 
     .gallery-thumb {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 8px;
+      width: 140px;
+      aspect-ratio: 817/605;
+      border-radius: 12px;
       overflow: hidden;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color 0.2s, transform 0.2s;
       background: #0a0f1e;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform .25s, border-color .25s;
     }
-    .gallery-thumb:hover { transform: translateX(3px); }
+    .gallery-thumb:hover { transform: translateY(-3px); }
     .gallery-thumb.active { border-color: var(--sb-accent); }
     .gallery-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    .gallery-caption {
+      font-size: .9rem;
+      color: var(--text-muted);
+      text-align: center;
     }
 
     .features-section { background: var(--section-dark); }
@@ -778,10 +782,9 @@
       .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
       .page-nav-footer { grid-template-columns: 1fr; gap: 1.5rem; text-align: center !important; }
       .page-nav-back, .page-nav-next { text-align: center; }
-      .gallery-layout { flex-direction: column; }
-      .gallery-main { width: 100%; }
-      .gallery-thumbs { flex-direction: row; overflow-x: auto; }
-      .gallery-thumb { flex: 0 0 120px; width: 120px; }
+      .gallery-layout { gap: 1rem; }
+      .gallery-thumbs { gap: 0.5rem; }
+      .gallery-thumb { width: 100px; }
     }
 
     @media (max-width: 768px) {
@@ -904,9 +907,9 @@
         <div class="overview-text reveal">
           <p class="section-label">Project Overview</p>
           <h2 class="section-title">What it is & why it was built.</h2>
-          <p>Snow Bros is a classic 1990 arcade platformer by Toaplan. This remake faithfully recreates its core gameplay loop: players control two characters who throw snowballs to freeze enemies, then kick them across the stage to defeat other enemies in chain reactions.</p>
-          <p>The project was built as a semester-long OOP exercise with a clear brief: design a maintainable C++ codebase, not just a functioning game. Every architectural decision — from how entities communicate to how animations are timed — was made with code quality in mind.</p>
-          <p>It solves the common beginner mistake of writing "spaghetti game code" by demonstrating how a clean class hierarchy, separation of concerns, and reusable systems make even complex game behavior manageable and extendable.</p>
+          <p>Snow Bros is a remake of the 1990 arcade platformer originally developed by Toaplan. Players control one or two characters who throw snowballs to freeze enemies and kick them across the stage, creating chain reactions to clear each level.</p>
+          <p>Built in C++ using SFML, the project focused on recreating the core gameplay while emphasizing clean object-oriented design. Rather than prioritizing quick implementation, the architecture was designed to separate entities, animation, collision handling, and game states into reusable systems.</p>
+          <p>The project served as an exercise in building maintainable game code, demonstrating how principles such as inheritance, polymorphism, and separation of concerns can be applied to create a structured and extensible codebase.</p>
         </div>
         <div class="overview-stats reveal" style="transition-delay:0.1s">
           <div class="stat-card">
@@ -937,6 +940,7 @@
         <div class="gallery-main" id="galleryMain">
           <img id="galleryMainImg" src="Level.jpeg" alt="Gameplay — Level 15" class="gallery-main-img" />
         </div>
+        <p id="galleryCaption" class="gallery-caption">Gameplay — Level 15</p>
 
         <!-- Vertical thumbnail strip -->
         <div class="gallery-thumbs" id="galleryThumbs">
@@ -1163,6 +1167,7 @@
         thumb.classList.add('active');
         document.getElementById('galleryMainImg').src = thumb.dataset.src;
         document.getElementById('galleryMainImg').alt = thumb.dataset.label;
+        document.getElementById('galleryCaption').textContent = thumb.dataset.label;
       });
     });
   </script>
