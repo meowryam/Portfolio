@@ -14,8 +14,8 @@
       --lavender-mid:  #9B7BBF;
       --purple-dk:     #1C0F2E;
       --purple-mid:    #3D1F6B;
-      --section-dark:  #C4AEDE;
-      --gray-soft:     #EAE5F2;
+      --section-dark:  #D7C4EC;
+      --gray-soft:     #B397D6;
       --gray-mid:      #9B96A8;
       --gray-dk:       #3D3848;
       --white:         #F2EEF8;
@@ -570,7 +570,9 @@
     /* =====================
        SCREENSHOT GALLERY — updated for ~4:3 game screenshots
        ===================== */
-    .gallery-section { background: var(--white); }
+    .gallery-section { background: linear-gradient(160deg, #B8D9E8 0%, #C4DFF0 100%); }
+    .gallery-section .section-label { color: var(--sb-accent-dk); }
+    .gallery-section .section-label::before { background: var(--sb-accent-dk); }
 
     .gallery-layout {
       display: flex;
@@ -628,7 +630,7 @@
       text-align: center;
     }
 
-    .features-section { background: var(--section-dark); }
+    .features-section { background: linear-gradient(160deg, #D7C4EC 0%, #DFC9EF 100%); }
     .features-section .section-label { color: var(--purple-mid); }
     .features-section .section-label::before { background: var(--purple-mid); }
     .features-section .section-title { color: var(--purple-dk); }
@@ -676,24 +678,28 @@
       line-height: 1.7;
     }
 
-    .stack-section { background: var(--gray-soft); }
+    .stack-section { background: linear-gradient(160deg, #B397D6 0%, #A889CC 100%); }
+    .stack-section .section-title { color: var(--purple-dk); }
+    .stack-section .section-label { color: var(--purple-mid); }
+    .stack-section .section-label::before { background: var(--purple-mid); }
     .stack-categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
     }
     .stack-category {
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(200,184,232,0.45);
+      background: rgba(28,15,46,0.45);
+      border: 1px solid rgba(126,200,227,0.18);
       border-radius: 16px;
       padding: 1.5rem;
+      backdrop-filter: blur(8px);
     }
     .stack-cat-title {
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--sb-accent-dk);
+      color: var(--sb-accent);
       margin-bottom: 1rem;
     }
     .stack-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -702,14 +708,14 @@
       border-radius: 100px;
       font-size: 0.78rem;
       font-weight: 500;
-      background: rgba(126,200,227,0.1);
+      background: rgba(126,200,227,0.12);
       border: 1px solid rgba(126,200,227,0.3);
-      color: var(--purple-dk);
+      color: var(--sb-accent-lt);
       transition: background 0.2s, transform 0.2s;
     }
-    .stack-pill:hover { background: rgba(126,200,227,0.2); transform: translateY(-1px); }
-    .stack-pill--purple { background: rgba(155,123,191,0.1); border-color: rgba(155,123,191,0.3); }
-    .stack-pill--purple:hover { background: rgba(155,123,191,0.2); }
+    .stack-pill:hover { background: rgba(126,200,227,0.22); transform: translateY(-1px); }
+    .stack-pill--purple { background: rgba(196,174,222,0.12); border-color: rgba(196,174,222,0.3); color: var(--lavender-lt); }
+    .stack-pill--purple:hover { background: rgba(196,174,222,0.22); }
 
     .page-nav-footer {
       background: var(--purple-dk);
