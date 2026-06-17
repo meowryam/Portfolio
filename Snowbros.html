@@ -527,6 +527,7 @@
       transform: translateY(0);
     }
 
+    /* OVERVIEW */
     .overview-section { background: var(--purple-dk); }
     .overview-grid {
       display: grid;
@@ -567,10 +568,8 @@
       text-transform: uppercase;
     }
 
-    /* =====================
-       SCREENSHOT GALLERY — updated for ~4:3 game screenshots
-       ===================== */
-    .gallery-section { background: linear-gradient(160deg, #0d1a2e 0%, #0f2238 100%); }
+    /* GALLERY */
+    .gallery-section { background: linear-gradient(145deg, #0D1929 0%, #14213D 35%, #1C0F2E 60%, #2D1654 100%); }
     .gallery-section .section-label { color: var(--sb-accent); }
     .gallery-section .section-label::before { background: var(--sb-accent); }
     .gallery-section .section-title { color: var(--lavender-lt); }
@@ -617,9 +616,7 @@
       cursor: pointer;
       transition: transform .25s, border-color .25s;
     }
-   .gallery-thumb:hover{
-    transform: translateY(-4px) scale(1.03);
-}
+    .gallery-thumb:hover { transform: translateY(-4px) scale(1.03); }
     .gallery-thumb.active { border-color: var(--sb-accent); }
     .gallery-thumb img {
       width: 100%;
@@ -633,93 +630,164 @@
       text-align: center;
     }
 
-    .features-section { background: linear-gradient(160deg, #D7C4EC 0%, #DFC9EF 100%); }
-    .features-section .section-label { color: var(--purple-mid); }
-    .features-section .section-label::before { background: var(--purple-mid); }
-    .features-section .section-title { color: var(--purple-dk); }
+    /* =====================
+       BEHIND THE SCENES
+       ===================== */
+    .bts-section {
+      background: linear-gradient(160deg, #B397D6 0%, #A889CC 100%);
+    }
+    .bts-section .section-label {
+      color: var(--purple-dk);
+    }
+    .bts-section .section-label::before {
+      background: var(--purple-dk);
+    }
+    .bts-section .section-title { color: var(--purple-dk); }
 
-    .features-grid {
+    .bts-desc {
+      font-size: 1rem;
+      color: rgba(28,15,46,0.55);
+      font-weight: 300;
+      margin-bottom: 3rem;
+      max-width: 520px;
+    }
+
+    .bts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
+      align-items: start;
     }
-    .feature-card {
-      background: rgba(255,255,255,0.5);
-      border: 1px solid rgba(61,31,107,0.14);
-      border-radius: 18px;
-      padding: 1.75rem;
-      backdrop-filter: blur(6px);
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+
+    .bts-card {
+      background: rgba(255,255,255,0.93);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 4px 24px rgba(28,15,46,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(61,31,107,0.12);
-      border-color: rgba(126,200,227,0.4);
+    .bts-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(28,15,46,0.16);
     }
-    .feature-icon {
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      background: rgba(126,200,227,0.15);
+
+    /* Gameplay card accent */
+    .bts-card--highlight {
+      background: linear-gradient(145deg, #1C0F2E 0%, #2a1550 100%);
       border: 1px solid rgba(126,200,227,0.3);
+    }
+    .bts-card--highlight .bts-card-icon { background: rgba(126,200,227,0.12); border-color: rgba(126,200,227,0.3); }
+    .bts-card--highlight .bts-card-title { color: var(--lavender-lt); }
+    .bts-card--highlight .bts-pill {
+      background: rgba(126,200,227,0.12);
+      border-color: rgba(126,200,227,0.35);
+      color: var(--sb-accent-lt);
+    }
+    .bts-card--highlight .bts-pill:hover { background: rgba(126,200,227,0.22); }
+
+    /* Framework — dark-mid purple */
+    .bts-card--shade2 {
+      background: linear-gradient(145deg, #3D1F6B 0%, #4a2880 100%);
+      border: 1px solid rgba(196,174,222,0.25);
+    }
+    .bts-card--shade2 .bts-card-icon { background: rgba(196,174,222,0.15); border-color: rgba(196,174,222,0.3); }
+    .bts-card--shade2 .bts-card-title { color: var(--lavender-lt); }
+    .bts-card--shade2 .bts-pill {
+      background: rgba(196,174,222,0.15);
+      border-color: rgba(196,174,222,0.35);
+      color: var(--lavender-lt);
+    }
+    .bts-card--shade2 .bts-pill:hover { background: rgba(196,174,222,0.28); }
+    .bts-card--shade2 .bts-pill--purple {
+      background: rgba(126,200,227,0.1);
+      border-color: rgba(126,200,227,0.3);
+      color: var(--sb-accent-lt);
+    }
+    .bts-card--shade2 .bts-pill--purple:hover { background: rgba(126,200,227,0.2); }
+
+    /* Tools — lighter purple */
+    .bts-card--shade3 {
+      background: linear-gradient(145deg, #7B5BA6 0%, #8f6cba 100%);
+      border: 1px solid rgba(224,213,238,0.25);
+    }
+    .bts-card--shade3 .bts-card-icon { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); }
+    .bts-card--shade3 .bts-card-title { color: #ffffff; }
+    .bts-card--shade3 .bts-pill {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+      color: #ffffff;
+    }
+    .bts-card--shade3 .bts-pill:hover { background: rgba(255,255,255,0.25); }
+
+    /* Language — lightest purple */
+    .bts-card--shade4 {
+      background: linear-gradient(145deg, #B397D6 0%, #c4abe0 100%);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .bts-card--shade4 .bts-card-icon { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.35); }
+    .bts-card--shade4 .bts-card-title { color: var(--purple-dk); }
+    .bts-card--shade4 .bts-pill {
+      background: rgba(28,15,46,0.12);
+      border-color: rgba(28,15,46,0.2);
+      color: var(--purple-dk);
+    }
+    .bts-card--shade4 .bts-pill:hover { background: rgba(28,15,46,0.22); }
+
+    .bts-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(126,200,227,0.12);
+      border: 1px solid rgba(126,200,227,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
       font-size: 1.1rem;
+      margin-bottom: 1rem;
     }
-    .feature-title {
+
+    .bts-card-title {
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       font-weight: 600;
       color: var(--purple-dk);
-      margin-bottom: 0.5rem;
-    }
-    .feature-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 300;
-      line-height: 1.7;
-    }
-
-    .stack-section { background: linear-gradient(160deg, #B397D6 0%, #A889CC 100%); }
-    .stack-section .section-title { color: #ffffff; }
-    .stack-section .section-label { color: rgba(255,255,255,0.75); }
-    .stack-section .section-label::before { background: rgba(255,255,255,0.75); }
-    .stack-categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    .stack-category {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 20px rgba(28,15,46,0.12);
-    }
-    .stack-cat-title {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sb-accent-dk);
       margin-bottom: 1rem;
     }
-    .stack-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .stack-pill {
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      background: rgba(126,200,227,0.15);
-      border: 1px solid rgba(126,200,227,0.4);
-      color: var(--purple-dk);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .stack-pill:hover { background: rgba(126,200,227,0.3); transform: translateY(-1px); }
-    .stack-pill--purple { background: rgba(155,123,191,0.12); border-color: rgba(155,123,191,0.4); color: var(--purple-mid); }
-    .stack-pill--purple:hover { background: rgba(155,123,191,0.25); }
 
+    .bts-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .bts-pill {
+      padding: 0.28rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      background: rgba(126,200,227,0.12);
+      border: 1px solid rgba(126,200,227,0.35);
+      color: var(--purple-dk);
+      transition: background 0.2s, transform 0.15s;
+      cursor: default;
+    }
+    .bts-pill:hover { background: rgba(126,200,227,0.25); transform: translateY(-1px); }
+
+    .bts-pill--purple {
+      background: rgba(155,123,191,0.1);
+      border-color: rgba(155,123,191,0.35);
+      color: var(--purple-mid);
+    }
+    .bts-pill--purple:hover { background: rgba(155,123,191,0.22); }
+
+    @media (max-width: 1024px) {
+      .bts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .bts-grid { grid-template-columns: 1fr; }
+    }
+
+    /* PAGE NAV + FOOTER */
     .page-nav-footer {
       background: var(--purple-dk);
       padding: 4rem 5%;
@@ -854,9 +922,9 @@
           Game Development · Featured Project
         </div>
         <h1 class="project-title">Snow Bros<br /><em>Remake.</em></h1>
-     <p class="hero-summary">
-A modern remake of the classic Snow Bros arcade game built with C++ and SFML, featuring sprite animation, tile-based collisions, and a Frozen-inspired visual atmosphere.
-</p>
+        <p class="hero-summary">
+          A modern remake of the classic Snow Bros arcade game built with C++ and SFML, featuring sprite animation, tile-based collisions, and a Frozen-inspired visual atmosphere.
+        </p>
         <div class="hero-stack">
           <span class="stack-badge stack-badge--accent">C++</span>
           <span class="stack-badge stack-badge--accent">SFML</span>
@@ -916,36 +984,25 @@ A modern remake of the classic Snow Bros arcade game built with C++ and SFML, fe
         <div class="overview-text reveal">
           <p class="section-label">Project Overview</p>
           <h2 class="section-title">A nostalgic arcade game, reimagined.</h2>
-        <p>
-Snow Bros is a remake of Toaplan's 1990 arcade platformer, where players freeze enemies into snowballs and launch them across the stage to create chain reactions. The project recreates the core gameplay while modernizing the presentation and interface.
-</p>
-
-<p>
-Inspired by Disney's <em>Frozen</em>, I redesigned the menus and user interface with an icy aesthetic in mind and incorporated soundtracks from the movie to create a more immersive atmosphere. This gave the project its own personality while still preserving the spirit of the original game.
-</p>
-
-<p>
-Built in C++ using SFML, the project emphasizes clean object-oriented design. Entities, animations, collision handling, and game states were organized into reusable systems, making the codebase easier to maintain and extend.
-</p>
+          <p>
+            A modern remake of the classic <em>Snow Bros</em> arcade game built with C++ and SFML. Players freeze enemies into snowballs and launch them to create chain reactions across tile-based levels.
+          </p>
+          <p>
+            Inspired by Disney's <em>Frozen</em>, the project features an icy interface, custom menus, sprite animations, and clean object-oriented architecture designed for maintainability and future expansion.
+          </p>
         </div>
         <div class="overview-stats reveal" style="transition-delay:0.1s">
           <div class="stat-card">
             <div class="stat-number">2P</div>
-<div class="stat-label">
-Local Multiplayer
-</div>
+            <div class="stat-label">Local Multiplayer</div>
           </div>
           <div class="stat-card">
-          <div class="stat-number">60 FPS</div>
-<div class="stat-label">
-Smooth sprite animations
-</div>
+            <div class="stat-number">60 FPS</div>
+            <div class="stat-label">Smooth sprite animations</div>
           </div>
           <div class="stat-card">
-           <div class="stat-number">OOP</div>
-<div class="stat-label">
-Modular entity architecture
-</div>
+            <div class="stat-number">OOP</div>
+            <div class="stat-label">Modular entity architecture</div>
           </div>
         </div>
       </div>
@@ -959,13 +1016,11 @@ Modular entity architecture
       <h2 class="section-title reveal">Moments From the Game</h2>
 
       <div class="gallery-layout reveal" style="transition-delay:0.1s">
-        <!-- Main display -->
         <div class="gallery-main" id="galleryMain">
           <img id="galleryMainImg" src="Level.jpeg" alt="Gameplay — Level 15" class="gallery-main-img" />
         </div>
         <p id="galleryCaption" class="gallery-caption">Gameplay — Level 15</p>
 
-        <!-- Vertical thumbnail strip -->
         <div class="gallery-thumbs" id="galleryThumbs">
           <div class="gallery-thumb active" data-index="0" data-src="Level.jpeg" data-label="Gameplay — Level 15">
             <img src="Level.jpeg" alt="Gameplay Level" />
@@ -987,92 +1042,63 @@ Modular entity architecture
     </div>
   </section>
 
-  <section class="full-section features-section">
+  <!-- BEHIND THE SCENES -->
+  <section class="full-section bts-section">
     <div style="max-width:1200px; margin:0 auto;">
-      <p class="section-label reveal">Features</p>
-      <h2 class="section-title reveal">What's inside the game.</h2>
-      <div class="features-grid">
+      <p class="section-label reveal">Behind the Scenes</p>
+      <h2 class="section-title reveal">What powers the game.</h2>
+      <p class="bts-desc reveal" style="transition-delay:0.05s">A quick look at the technologies and systems used to build the project.</p>
 
-        <div class="feature-card reveal">
-          <div class="feature-icon">🎮</div>
-          <h3 class="feature-title">Two-Player Co-op</h3>
-          <p class="feature-desc">Local two-player mode with separate input handling for each character. Both players can independently throw snowballs, move, and jump across all platforms.</p>
-        </div>
+      <div class="bts-grid reveal" style="transition-delay:0.1s">
 
-        <div class="feature-card reveal" style="transition-delay:0.07s">
-          <div class="feature-icon">❄️</div>
-          <h3 class="feature-title">Snowball Mechanics</h3>
-          <p class="feature-desc">Projectiles are fired left or right based on player facing direction. Enemies hit by snowballs enter a "frozen" state and can then be kicked to defeat nearby enemies in chain reactions.</p>
-        </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.14s">
-          <div class="feature-icon">🏃</div>
-          <h3 class="feature-title">Sprite Animation System</h3>
-          <p class="feature-desc">Frame-based animations driven by delta time, not frame rate. Each entity has distinct idle, run, jump, attack, and death animation states stored in sprite sheets and switched via state flags.</p>
-        </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.07s">
-          <div class="feature-icon">🧱</div>
-          <h3 class="feature-title">Tile-Based Collision</h3>
-          <p class="feature-desc">Levels are built from tile maps. Collision is resolved per-tile, allowing characters to stand on platforms, fall through gaps, and correctly handle edge cases at tile boundaries.</p>
-        </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.14s">
-          <div class="feature-icon">🤖</div>
-          <h3 class="feature-title">Enemy AI</h3>
-          <p class="feature-desc">Enemies use a simple finite state machine — patrolling, chasing, fleeing when encased in snow. Physics-driven movement ensures enemies realistically fall off platforms.</p>
-        </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.21s">
-          <div class="feature-icon">🎯</div>
-          <h3 class="feature-title">Score & Level Progression</h3>
-          <p class="feature-desc">Points awarded per enemy defeated and per chain reaction. Levels clear when all enemies are eliminated, then load the next stage with increased difficulty.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="full-section stack-section">
-    <div style="max-width:1100px; margin:0 auto;">
-      <p class="section-label reveal" style="color:var(--sb-accent-dk);">
-        <span style="display:inline-block;width:20px;height:1px;background:var(--sb-accent-dk);"></span>
-        Tech Stack
-      </p>
-      <h2 class="section-title reveal">Built with</h2>
-      <div class="stack-categories reveal" style="transition-delay:0.1s">
-        <div class="stack-category">
-          <p class="stack-cat-title">Language</p>
-          <div class="stack-pills">
-            <span class="stack-pill">C++17</span>
-            <span class="stack-pill">OOP</span>
+        <!-- Gameplay Systems — darkest -->
+        <div class="bts-card bts-card--highlight">
+          <div class="bts-card-icon">🎮</div>
+          <h3 class="bts-card-title">Gameplay Systems</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">Local Multiplayer</span>
+            <span class="bts-pill">Snowball Mechanics</span>
+            <span class="bts-pill">Sprite Animation</span>
+            <span class="bts-pill">Tile Collision</span>
+            <span class="bts-pill">Enemy AI</span>
+            <span class="bts-pill">Level Progression</span>
+            <span class="bts-pill">Leaderboards</span>
           </div>
         </div>
-        <div class="stack-category">
-          <p class="stack-cat-title">Framework</p>
-          <div class="stack-pills">
-            <span class="stack-pill">SFML 3.x</span>
-            <span class="stack-pill">sf::RenderWindow</span>
-            <span class="stack-pill">sf::Sprite</span>
+
+        <!-- Framework — dark-mid -->
+        <div class="bts-card bts-card--shade2">
+          <div class="bts-card-icon">❄️</div>
+          <h3 class="bts-card-title">Framework</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">SFML 3</span>
+            <span class="bts-pill bts-pill--purple">Graphics</span>
+            <span class="bts-pill bts-pill--purple">Audio</span>
+            <span class="bts-pill bts-pill--purple">Input Handling</span>
           </div>
         </div>
-        <div class="stack-category">
-          <p class="stack-cat-title">Concepts</p>
-          <div class="stack-pills">
-            <span class="stack-pill stack-pill--purple">Inheritance</span>
-            <span class="stack-pill stack-pill--purple">Polymorphism</span>
-            <span class="stack-pill stack-pill--purple">AABB Physics</span>
-            <span class="stack-pill stack-pill--purple">FSM</span>
+
+        <!-- Tools — lighter -->
+        <div class="bts-card bts-card--shade3">
+          <div class="bts-card-icon">🛠️</div>
+          <h3 class="bts-card-title">Tools</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">Visual Studio</span>
+            <span class="bts-pill">Git</span>
+            <span class="bts-pill">GitHub</span>
           </div>
         </div>
-        <div class="stack-category">
-          <p class="stack-cat-title">Tools</p>
-          <div class="stack-pills">
-            <span class="stack-pill">Visual Studio</span>
-            <span class="stack-pill">Git</span>
-            <span class="stack-pill">GitHub</span>
+
+        <!-- Language — lightest -->
+        <div class="bts-card bts-card--shade4">
+          <div class="bts-card-icon">💻</div>
+          <h3 class="bts-card-title">Language</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">C++</span>
+            <span class="bts-pill">OOP</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
