@@ -570,9 +570,10 @@
     /* =====================
        SCREENSHOT GALLERY — updated for ~4:3 game screenshots
        ===================== */
-    .gallery-section { background: linear-gradient(160deg, #B8D9E8 0%, #C4DFF0 100%); }
-    .gallery-section .section-label { color: var(--sb-accent-dk); }
-    .gallery-section .section-label::before { background: var(--sb-accent-dk); }
+    .gallery-section { background: linear-gradient(160deg, #0d1a2e 0%, #0f2238 100%); }
+    .gallery-section .section-label { color: var(--sb-accent); }
+    .gallery-section .section-label::before { background: var(--sb-accent); }
+    .gallery-section .section-title { color: var(--lavender-lt); }
 
     .gallery-layout {
       display: flex;
@@ -616,7 +617,9 @@
       cursor: pointer;
       transition: transform .25s, border-color .25s;
     }
-    .gallery-thumb:hover { transform: translateY(-3px); }
+   .gallery-thumb:hover{
+    transform: translateY(-4px) scale(1.03);
+}
     .gallery-thumb.active { border-color: var(--sb-accent); }
     .gallery-thumb img {
       width: 100%;
@@ -626,7 +629,7 @@
     }
     .gallery-caption {
       font-size: .9rem;
-      color: var(--text-muted);
+      color: rgba(194,234,245,0.55);
       text-align: center;
     }
 
@@ -679,27 +682,27 @@
     }
 
     .stack-section { background: linear-gradient(160deg, #B397D6 0%, #A889CC 100%); }
-    .stack-section .section-title { color: var(--purple-dk); }
-    .stack-section .section-label { color: var(--purple-mid); }
-    .stack-section .section-label::before { background: var(--purple-mid); }
+    .stack-section .section-title { color: #ffffff; }
+    .stack-section .section-label { color: rgba(255,255,255,0.75); }
+    .stack-section .section-label::before { background: rgba(255,255,255,0.75); }
     .stack-categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
     }
     .stack-category {
-      background: rgba(28,15,46,0.45);
-      border: 1px solid rgba(126,200,227,0.18);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.6);
       border-radius: 16px;
       padding: 1.5rem;
-      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(28,15,46,0.12);
     }
     .stack-cat-title {
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--sb-accent);
+      color: var(--sb-accent-dk);
       margin-bottom: 1rem;
     }
     .stack-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -708,14 +711,14 @@
       border-radius: 100px;
       font-size: 0.78rem;
       font-weight: 500;
-      background: rgba(126,200,227,0.12);
-      border: 1px solid rgba(126,200,227,0.3);
-      color: var(--sb-accent-lt);
+      background: rgba(126,200,227,0.15);
+      border: 1px solid rgba(126,200,227,0.4);
+      color: var(--purple-dk);
       transition: background 0.2s, transform 0.2s;
     }
-    .stack-pill:hover { background: rgba(126,200,227,0.22); transform: translateY(-1px); }
-    .stack-pill--purple { background: rgba(196,174,222,0.12); border-color: rgba(196,174,222,0.3); color: var(--lavender-lt); }
-    .stack-pill--purple:hover { background: rgba(196,174,222,0.22); }
+    .stack-pill:hover { background: rgba(126,200,227,0.3); transform: translateY(-1px); }
+    .stack-pill--purple { background: rgba(155,123,191,0.12); border-color: rgba(155,123,191,0.4); color: var(--purple-mid); }
+    .stack-pill--purple:hover { background: rgba(155,123,191,0.25); }
 
     .page-nav-footer {
       background: var(--purple-dk);
@@ -851,9 +854,9 @@
           Game Development · Featured Project
         </div>
         <h1 class="project-title">Snow Bros<br /><em>Remake.</em></h1>
-        <p class="hero-summary">
-          A faithful arcade platformer recreation built in C++ with SFML — featuring frame-based sprite animations, tile-based collision detection, and an object-oriented architecture that cleanly separates entities, rendering, and scene management.
-        </p>
+     <p class="hero-summary">
+A modern remake of the classic Snow Bros arcade game built with C++ and SFML, featuring sprite animation, tile-based collisions, and a Frozen-inspired visual atmosphere.
+</p>
         <div class="hero-stack">
           <span class="stack-badge stack-badge--accent">C++</span>
           <span class="stack-badge stack-badge--accent">SFML</span>
@@ -912,23 +915,37 @@
       <div class="overview-grid">
         <div class="overview-text reveal">
           <p class="section-label">Project Overview</p>
-          <h2 class="section-title">What it is & why it was built.</h2>
-          <p>Snow Bros is a remake of the 1990 arcade platformer originally developed by Toaplan. Players control one or two characters who throw snowballs to freeze enemies and kick them across the stage, creating chain reactions to clear each level.</p>
-          <p>Built in C++ using SFML, the project focused on recreating the core gameplay while emphasizing clean object-oriented design. Rather than prioritizing quick implementation, the architecture was designed to separate entities, animation, collision handling, and game states into reusable systems.</p>
-          <p>The project served as an exercise in building maintainable game code, demonstrating how principles such as inheritance, polymorphism, and separation of concerns can be applied to create a structured and extensible codebase.</p>
+          <h2 class="section-title">A nostalgic arcade game, reimagined.</h2>
+        <p>
+Snow Bros is a remake of Toaplan's 1990 arcade platformer, where players freeze enemies into snowballs and launch them across the stage to create chain reactions. The project recreates the core gameplay while modernizing the presentation and interface.
+</p>
+
+<p>
+Inspired by Disney's <em>Frozen</em>, I redesigned the menus and user interface with an icy aesthetic in mind and incorporated soundtracks from the movie to create a more immersive atmosphere. This gave the project its own personality while still preserving the spirit of the original game.
+</p>
+
+<p>
+Built in C++ using SFML, the project emphasizes clean object-oriented design. Entities, animations, collision handling, and game states were organized into reusable systems, making the codebase easier to maintain and extend.
+</p>
         </div>
         <div class="overview-stats reveal" style="transition-delay:0.1s">
           <div class="stat-card">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Distinct entity classes in hierarchy</div>
+            <div class="stat-number">2P</div>
+<div class="stat-label">
+Local Multiplayer
+</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">C++</div>
-            <div class="stat-label">With SFML 2.x for windowing & rendering</div>
+          <div class="stat-number">60 FPS</div>
+<div class="stat-label">
+Smooth sprite animations
+</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">Frame<br/><span style="font-size:1.4rem">sprites</span></div>
-            <div class="stat-label">Delta-time driven animation system</div>
+           <div class="stat-number">OOP</div>
+<div class="stat-label">
+Modular entity architecture
+</div>
           </div>
         </div>
       </div>
@@ -939,7 +956,7 @@
   <section class="full-section gallery-section" id="gallery">
     <div style="max-width:1100px; margin:0 auto;">
       <p class="section-label reveal">Screenshots</p>
-      <h2 class="section-title reveal">Gameplay Gallery.</h2>
+      <h2 class="section-title reveal">Moments From the Game</h2>
 
       <div class="gallery-layout reveal" style="transition-delay:0.1s">
         <!-- Main display -->
@@ -1022,7 +1039,7 @@
         <span style="display:inline-block;width:20px;height:1px;background:var(--sb-accent-dk);"></span>
         Tech Stack
       </p>
-      <h2 class="section-title reveal">Built with.</h2>
+      <h2 class="section-title reveal">Built with</h2>
       <div class="stack-categories reveal" style="transition-delay:0.1s">
         <div class="stack-category">
           <p class="stack-cat-title">Language</p>
@@ -1034,7 +1051,7 @@
         <div class="stack-category">
           <p class="stack-cat-title">Framework</p>
           <div class="stack-pills">
-            <span class="stack-pill">SFML 2.x</span>
+            <span class="stack-pill">SFML 3.x</span>
             <span class="stack-pill">sf::RenderWindow</span>
             <span class="stack-pill">sf::Sprite</span>
           </div>
