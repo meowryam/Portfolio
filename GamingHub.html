@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming Hub — Maryam Yousaf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink-bg:      #FFF7FA;
+      --pink-card:    #FFEAF2;
+      --pink-soft:    #FFD7E6;
+      --rose:         #F7A8C4;
+      --rose-dark:    #D9779B;
+      --rose-darker:  #B85580;
+      --lavender:     #DCCEF8;
+      --purple-soft:  #BCA4F6;
+      --cream:        #FFFDFD;
+      --text-dark:    #4A3C48;
+      --text-muted:   #8A7685;
+      --accent-blue:  #B7E3F7;
+      --white:        #FFF7FA;
+      /* portfolio shared tokens */
+      --lavender-mid: #9B7BBF;
+      --purple-dk:    #1C0F2E;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR STARS ── */
+    .star {
+      position: fixed;
+      pointer-events: none;
+      font-size: 14px;
+      opacity: 0;
+      z-index: 9999;
+      animation: starFade 0.8s ease forwards;
+      user-select: none;
+    }
+    @keyframes starFade {
+      0%   { opacity: 1; transform: scale(1) translateY(0); }
+      100% { opacity: 0; transform: scale(0.3) translateY(-20px); }
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(to right, var(--rose), var(--purple-soft), var(--rose-dark));
+      z-index: 200;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 5%;
+      background: rgba(255, 247, 250, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(247, 168, 196, 0.28);
+      box-shadow: 0 2px 24px rgba(74, 60, 72, 0.06);
+      transition: transform 0.35s ease, padding 0.35s ease;
+    }
+    nav.hide { transform: translateY(-100%); }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      font-style: italic;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      display: block;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--rose-darker); }
+
+    .nav-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(247,168,196,0.5);
+      border-radius: 100px;
+      color: var(--rose-darker);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-back-btn:hover {
+      background: rgba(247,168,196,0.12);
+      border-color: var(--rose);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text-dark);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    .project-hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFF8FC 0%, #FFEAF4 35%, #FCEEFF 70%, #F7F0FF 100%);
+      display: flex;
+      align-items: center;
+      padding: 8rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* pink glow blobs */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    .blob-pink  { width: 460px; height: 460px; background: rgba(247,168,196,0.18); top: -100px; right: 8%; }
+    .blob-lav   { width: 340px; height: 340px; background: rgba(188,164,246,0.15); bottom: -60px; left: 4%; }
+    .blob-cream { width: 280px; height: 280px; background: rgba(183,227,247,0.12); top: 30%;  left: 40%; }
+
+    /* floating deco symbols */
+    .hero-deco {
+      position: absolute;
+      pointer-events: none;
+      font-size: 1rem;
+      opacity: 0.22;
+      color: var(--rose);
+      animation: floatDeco 6s ease-in-out infinite;
+    }
+    .deco1 { top: 18%; left: 12%; animation-delay: 0s;   font-size: 1.3rem; }
+    .deco2 { top: 55%; left: 6%;  animation-delay: 1.5s; font-size: 0.9rem; color: var(--purple-soft); }
+    .deco3 { top: 28%; right: 5%; animation-delay: 0.8s; font-size: 1.1rem; color: var(--lavender); }
+    .deco4 { bottom: 22%; right: 12%; animation-delay: 2s;  font-size: 0.85rem; }
+    .deco5 { bottom: 30%; left: 22%; animation-delay: 3s;  font-size: 0.75rem; color: var(--purple-soft); }
+    @keyframes floatDeco {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-14px) rotate(8deg); }
+    }
+
+    .project-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 28px; height: 1px;
+      background: var(--rose-dark);
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .project-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--rose-dark);
+    }
+
+    .hero-summary {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stack-badge {
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .stack-badge--accent {
+      background: rgba(247,168,196,0.18);
+      border: 1px solid rgba(247,168,196,0.5);
+      color: var(--rose-darker);
+    }
+    .stack-badge--muted {
+      background: rgba(188,164,246,0.1);
+      border: 1px solid rgba(188,164,246,0.3);
+      color: var(--lavender-mid);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-accent {
+      padding: 0.75rem 1.8rem;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-accent:hover {
+      background: var(--rose-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(217,119,155,0.3);
+    }
+
+    .btn-ghost {
+      padding: 0.75rem 1.8rem;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid rgba(247,168,196,0.4);
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-ghost:hover {
+      border-color: var(--rose);
+      color: var(--rose-darker);
+      transform: translateY(-2px);
+    }
+
+    /* ── HERO PREVIEW (animated window mockup) ── */
+    .hero-preview {
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease forwards;
+    }
+
+    .hero-preview-frame {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(247,168,196,0.35);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(74,60,72,0.12), 0 0 40px rgba(247,168,196,0.12);
+    }
+
+    .preview-titlebar {
+      background: linear-gradient(90deg, #F7A8C4, #D9779B);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .titlebar-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .td-red    { background: #FF5F57; }
+    .td-yellow { background: #FEBC2E; }
+    .td-green  { background: #28C840; }
+    .titlebar-name {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.85);
+      margin-left: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── HERO MENU MOCKUP ── */
+    .preview-game-screen {
+      background: linear-gradient(160deg, #FFE8F0 0%, #FFC8DC 40%, #FFD4E8 100%);
+      height: 340px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* sakura cloud blobs */
+    .sakura-bg { position: absolute; inset: 0; pointer-events: none; }
+    .sakura-spot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      filter: blur(20px);
+    }
+    /* scattered tiny sakura shapes */
+    .sakura-petal {
+      position: absolute;
+      font-size: 0.75rem;
+      color: rgba(217,119,155,0.35);
+      animation: petalDrift linear infinite;
+      pointer-events: none;
+    }
+    @keyframes petalDrift {
+      0%   { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(360px) rotate(180deg); opacity: 0; }
+    }
+
+    /* "GAMING HUB" title inside mockup */
+    .menu-title {
+      position: absolute;
+      top: 18px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #E0559A;
+      text-shadow:
+        0 0 12px rgba(224,85,154,0.35),
+        2px 2px 0 rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    /* mute icon top-right */
+    .menu-mute {
+      position: absolute;
+      top: 18px; right: 16px;
+      font-size: 0.85rem;
+      color: rgba(184,85,128,0.7);
+    }
+
+    /* menu list panel */
+    .menu-panel {
+      position: absolute;
+      top: 68px; left: 18px;
+      width: 48%;
+      background: rgba(255,200,220,0.35);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .menu-item {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #D9609A;
+      padding: 5px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.18s;
+      white-space: nowrap;
+    }
+    .menu-item:hover {
+      background: rgba(217,96,154,0.22);
+    }
+    .menu-item.active {
+      background: rgba(217,96,154,0.18);
+    }
+
+    /* pixel heart */
+    .menu-heart {
+      position: absolute;
+      right: 14%;
+      top: 72px;
+      font-size: 2.6rem;
+      filter: drop-shadow(0 4px 10px rgba(224,85,154,0.35));
+      animation: heartBob 2s ease-in-out infinite;
+      line-height: 1;
+    }
+    @keyframes heartBob {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-8px) scale(1.05); }
+    }
+
+    /* bouncing dots */
+    .menu-dots {
+      position: absolute;
+      bottom: 40px;
+      right: 8%;
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+    }
+    .menu-dot {
+      border-radius: 50%;
+      background: rgba(217,119,155,0.55);
+      animation: dotBounce ease-in-out infinite alternate;
+    }
+    .menu-dot:nth-child(1) { width:6px; height:6px; animation-duration:0.9s; animation-delay:0s; }
+    .menu-dot:nth-child(2) { width:10px; height:10px; animation-duration:0.9s; animation-delay:0.15s; }
+    .menu-dot:nth-child(3) { width:14px; height:14px; animation-duration:0.9s; animation-delay:0.3s; }
+    .menu-dot:nth-child(4) { width:6px; height:6px; animation-duration:0.9s; animation-delay:0.45s; }
+    .menu-dot:nth-child(5) { width:8px; height:8px; animation-duration:0.9s; animation-delay:0.6s; }
+    @keyframes dotBounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+
+    /* "meow meow meow" watermark */
+    .menu-watermark {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      color: rgba(184,85,128,0.4);
+      font-style: italic;
+    }
+
+    /* ── SECTIONS ── */
+    .page-section {
+      padding: 6rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .full-section { padding: 6rem 5%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose-darker);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--rose-darker);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── OVERVIEW ── */
+    .overview-section {
+      background: linear-gradient(160deg, #4A3C48 0%, #3A2C38 100%);
+    }
+    .overview-section .section-label { color: var(--rose); }
+    .overview-section .section-label::before { background: var(--rose); }
+    .overview-section .section-title { color: #FFEAF2; }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .overview-text p {
+      color: rgba(255,234,242,0.75);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .overview-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+    .stat-card {
+      background: rgba(247,168,196,0.08);
+      border: 1px solid rgba(247,168,196,0.22);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--rose);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,234,242,0.5);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── MINI ARCADE (game cards) ── */
+    .arcade-section {
+      background: linear-gradient(135deg, #FFF8FC 0%, #FFEAF4 40%, #F7F0FF 100%);
+    }
+    .arcade-section .section-label { color: var(--rose-darker); }
+    .arcade-section .section-label::before { background: var(--rose-darker); }
+    .arcade-section .section-title { color: var(--text-dark); }
+
+    .arcade-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(247,168,196,0.3);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 6px 32px rgba(74,60,72,0.08);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .game-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(74,60,72,0.13);
+    }
+    .game-card:nth-child(even) {
+      grid-template-columns: 1fr 1fr;
+      direction: rtl;
+    }
+    .game-card:nth-child(even) > * { direction: ltr; }
+
+    /* video wrapper — clips black bars */
+    .game-card-media {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+      background: #FFD0E4;
+    }
+
+    .game-card-vid {
+      /* absolute + oversized so the letterbox black bars
+         fall outside the overflow:hidden parent and get clipped */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      height: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* shown only when video fails to load */
+    .vid-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .preview-snake {
+      background: linear-gradient(135deg, #FFEAF2, #FFD0E4);
+    }
+    .preview-pong {
+      background: linear-gradient(135deg, #FFF0F5, #FFDCEC);
+    }
+    .preview-brick {
+      background: linear-gradient(135deg, #F9E8F5, #F0D4F0);
+    }
+
+    .game-card-info {
+      padding: 2.5rem 2rem;
+    }
+    .game-card-number {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.5rem;
+    }
+    .game-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    .game-card-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── BEHIND THE SCENES ── */
+    .bts-section {
+      background: linear-gradient(160deg, #F7A8C4 0%, #E890B0 40%, #D9779B 100%);
+    }
+    .bts-section .section-label { color: var(--text-dark); }
+    .bts-section .section-label::before { background: var(--text-dark); }
+    .bts-section .section-title { color: var(--text-dark); }
+
+    .bts-desc {
+      font-size: 1rem;
+      color: rgba(74,60,72,0.55);
+      font-weight: 300;
+      margin-bottom: 3rem;
+      max-width: 520px;
+    }
+
+    .bts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .bts-card {
+      background: rgba(255,255,255,0.93);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 4px 24px rgba(74,60,72,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .bts-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(74,60,72,0.16);
+    }
+
+    /* Game Systems — dark */
+    .bts-card--highlight {
+      background: linear-gradient(145deg, #4A3C48 0%, #5A4A56 100%);
+      border: 1px solid rgba(247,168,196,0.3);
+    }
+    .bts-card--highlight .bts-card-icon { background: rgba(247,168,196,0.12); border-color: rgba(247,168,196,0.3); }
+    .bts-card--highlight .bts-card-title { color: #FFEAF2; }
+    .bts-card--highlight .bts-pill {
+      background: rgba(247,168,196,0.12);
+      border-color: rgba(247,168,196,0.35);
+      color: #FFD0E4;
+    }
+    .bts-card--highlight .bts-pill:hover { background: rgba(247,168,196,0.22); }
+
+    /* Framework */
+    .bts-card--shade2 {
+      background: linear-gradient(145deg, #D9779B 0%, #E08DB0 100%);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .bts-card--shade2 .bts-card-icon { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); }
+    .bts-card--shade2 .bts-card-title { color: #fff; }
+    .bts-card--shade2 .bts-pill {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .bts-card--shade2 .bts-pill:hover { background: rgba(255,255,255,0.28); }
+    .bts-card--shade2 .bts-pill--purple {
+      background: rgba(188,164,246,0.18);
+      border-color: rgba(188,164,246,0.4);
+      color: #EDE6F7;
+    }
+
+    /* Tools */
+    .bts-card--shade3 {
+      background: linear-gradient(145deg, #F7A8C4 0%, #F7B8D0 100%);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .bts-card--shade3 .bts-card-icon { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.4); }
+    .bts-card--shade3 .bts-card-title { color: #4A3C48; }
+    .bts-card--shade3 .bts-pill {
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.5);
+      color: #4A3C48;
+    }
+    .bts-card--shade3 .bts-pill:hover { background: rgba(255,255,255,0.45); }
+
+    /* Language */
+    .bts-card--shade4 {
+      background: linear-gradient(145deg, #FFD7E6 0%, #FFE4EF 100%);
+      border: 1px solid rgba(247,168,196,0.35);
+    }
+    .bts-card--shade4 .bts-card-icon { background: rgba(247,168,196,0.2); border-color: rgba(247,168,196,0.35); }
+    .bts-card--shade4 .bts-card-title { color: #4A3C48; }
+    .bts-card--shade4 .bts-pill {
+      background: rgba(74,60,72,0.1);
+      border-color: rgba(74,60,72,0.18);
+      color: #4A3C48;
+    }
+    .bts-card--shade4 .bts-pill:hover { background: rgba(74,60,72,0.18); }
+
+    .bts-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(247,168,196,0.12);
+      border: 1px solid rgba(247,168,196,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .bts-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .bts-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .bts-pill {
+      padding: 0.28rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      background: rgba(247,168,196,0.12);
+      border: 1px solid rgba(247,168,196,0.35);
+      color: var(--text-dark);
+      transition: background 0.2s, transform 0.15s;
+      cursor: default;
+    }
+    .bts-pill:hover { background: rgba(247,168,196,0.25); transform: translateY(-1px); }
+
+    .bts-pill--purple {
+      background: rgba(188,164,246,0.12);
+      border-color: rgba(188,164,246,0.35);
+      color: var(--lavender-mid);
+    }
+    .bts-pill--purple:hover { background: rgba(188,164,246,0.22); }
+
+    /* ── PAGE NAV FOOTER ── */
+    .page-nav-footer {
+      background: var(--text-dark);
+      padding: 4rem 5%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      border-top: 1px solid rgba(247,168,196,0.1);
+    }
+    .page-nav-back { text-align: left; }
+    .page-nav-center { text-align: center; }
+    .page-nav-next { text-align: right; }
+
+    .page-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid rgba(247,168,196,0.25);
+      border-radius: 100px;
+      color: rgba(255,234,242,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    }
+    .page-nav-btn:hover {
+      background: rgba(247,168,196,0.1);
+      border-color: var(--rose);
+      transform: translateY(-2px);
+    }
+    .page-nav-btn--accent { border-color: rgba(188,164,246,0.3); color: rgba(220,206,248,0.9); }
+    .page-nav-btn--accent:hover { background: rgba(188,164,246,0.08); border-color: var(--lavender); }
+
+    .page-nav-project-label {
+      font-size: 0.72rem;
+      color: rgba(255,234,242,0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .page-nav-project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: rgba(255,234,242,0.8);
+    }
+    .divider-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(247,168,196,0.4);
+    }
+
+    footer {
+      background: var(--text-dark);
+      border-top: 1px solid rgba(247,168,196,0.1);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .project-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .bts-grid { grid-template-columns: repeat(2, 1fr); }
+      .game-card { grid-template-columns: 1fr !important; direction: ltr !important; }
+      .game-card:nth-child(even) { direction: ltr !important; }
+      .game-card-img,
+      .game-card-preview { height: 200px; }
+      .page-nav-footer { grid-template-columns: 1fr; gap: 1.5rem; text-align: center !important; }
+      .page-nav-back, .page-nav-next { text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(255,247,250,0.97);
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+        border-bottom: 1px solid rgba(247,168,196,0.2);
+        backdrop-filter: blur(14px);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { padding: 0.75rem 5%; }
+      .nav-links a { font-size: 1rem; }
+      .page-section { padding: 4rem 5%; }
+      .full-section { padding: 4rem 5%; }
+      .game-card-info { padding: 1.8rem 1.4rem; }
+    }
+    @media (max-width: 560px) {
+      .bts-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Maryam Yousaf</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li>
+        <a href="index.html#projects" class="nav-back-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Portfolio
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ════════════ HERO ════════════ -->
+  <section class="project-hero">
+    <!-- blobs -->
+    <div class="hero-blob blob-pink"></div>
+    <div class="hero-blob blob-lav"></div>
+    <div class="hero-blob blob-cream"></div>
+    <!-- floating deco -->
+    <span class="hero-deco deco1">✦</span>
+    <span class="hero-deco deco2">✿</span>
+    <span class="hero-deco deco3">♡</span>
+    <span class="hero-deco deco4">⋆</span>
+    <span class="hero-deco deco5">✦</span>
+
+    <div class="project-hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span></span>
+          Game Development · C++ &amp; SFML
+        </div>
+        <h1 class="project-title">Pookie<br /><em>Gaming Hub.</em></h1>
+        <p class="hero-summary">
+          Three classic arcade games in one playful package — built with C++ and SFML, wrapped in a soft pink aesthetic straight out of a dream.
+        </p>
+        <div class="hero-stack">
+          <span class="stack-badge stack-badge--accent">C++</span>
+          <span class="stack-badge stack-badge--accent">SFML</span>
+          <span class="stack-badge stack-badge--muted">OOP</span>
+          <span class="stack-badge stack-badge--muted">Collision Detection</span>
+          <span class="stack-badge stack-badge--muted">Scene Management</span>
+          <span class="stack-badge stack-badge--muted">Sprite Animation</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#arcade" class="btn-accent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12M6 21h12M3 12h18M12 3v18M4.5 7.5h15M4.5 16.5h15"/></svg>
+            See the Games
+          </a>
+          <a href="https://github.com/meowryam" target="_blank" rel="noopener" class="btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- animated mockup window -->
+      <div class="hero-preview">
+        <div class="hero-preview-frame">
+          <div class="preview-titlebar">
+            <div class="titlebar-dot td-red"></div>
+            <div class="titlebar-dot td-yellow"></div>
+            <div class="titlebar-dot td-green"></div>
+            <span class="titlebar-name">Pookie Gaming Hub</span>
+          </div>
+          <div class="preview-game-screen" id="gamePreview">
+            <!-- sakura cloud shapes + drifting petals (JS-generated) -->
+            <div class="sakura-bg" id="sakuraBg"></div>
+
+            <!-- GAMING HUB title -->
+            <div class="menu-title">Gaming Hub</div>
+            <div class="menu-mute">🔊</div>
+
+            <!-- menu buttons panel -->
+            <div class="menu-panel" id="menuPanel">
+              <div class="menu-item active">Ping Pong</div>
+              <div class="menu-item">Feed The Snake</div>
+              <div class="menu-item">Brick Breaker</div>
+              <div class="menu-item">LeaderBoard</div>
+              <div class="menu-item">Exit</div>
+            </div>
+
+            <!-- pixel heart -->
+            <div class="menu-heart">🩷</div>
+
+            <!-- bouncing dots row 1 -->
+            <div class="menu-dots" style="bottom:52px; right:8%;">
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+            </div>
+            <!-- bouncing dots row 2 -->
+            <div class="menu-dots" style="bottom:28px; right:8%;">
+              <div class="menu-dot" style="width:5px;height:5px;"></div>
+              <div class="menu-dot" style="width:8px;height:8px;"></div>
+              <div class="menu-dot" style="width:5px;height:5px;"></div>
+              <div class="menu-dot" style="width:10px;height:10px;"></div>
+              <div class="menu-dot" style="width:5px;height:5px;"></div>
+            </div>
+
+            <div class="menu-watermark">meow meow meow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ OVERVIEW ════════════ -->
+  <section class="full-section overview-section">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="overview-grid">
+        <div class="overview-text reveal">
+          <p class="section-label">Project Overview</p>
+          <h2 class="section-title">A collection of classic arcade games in one playful package.</h2>
+          <p>
+            Gaming Hub brings together three classic games — Brick Breaker, Ping Pong, and Feed the Snake — into a single C++ and SFML application. Each game runs independently with its own mechanics, but shares a cohesive pastel arcade style inspired by cute retro aesthetics.
+          </p>
+          <p>
+            Every detail, from the sakura-petal backgrounds to the heart-shaped lives counter, was designed to feel like playing inside a dream. The interface embraces personality over convention.
+          </p>
+        </div>
+        <div class="overview-stats reveal" style="transition-delay:0.1s">
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Complete playable games</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">♡</div>
+            <div class="stat-label">Pastel pookie aesthetic throughout</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">OOP</div>
+            <div class="stat-label">Clean modular architecture</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ MINI ARCADE ════════════ -->
+  <section class="full-section arcade-section" id="arcade">
+    <div style="max-width:1000px; margin:0 auto;">
+      <p class="section-label reveal">Mini Arcade ✨</p>
+      <h2 class="section-title reveal">Three games, one hub.</h2>
+
+      <div class="arcade-cards reveal" style="transition-delay:0.1s">
+
+        <!-- CARD 1 — Feed the Snake -->
+        <div class="game-card">
+          <div class="game-card-media">
+            <video class="game-card-vid" id="vid-snake" muted playsinline>
+              <source src="snake.mp4" type="video/mp4" />
+            </video>
+            <div class="game-card-preview preview-snake vid-fallback">🐍</div>
+          </div>
+          <div class="game-card-info">
+            <p class="game-card-number">01 ✦</p>
+            <h3 class="game-card-title">Feed the Snake</h3>
+            <p class="game-card-sub">Grow longer and chase high scores — classic snake with a pookie twist.</p>
+          </div>
+        </div>
+
+        <!-- CARD 2 — Ping Pong -->
+        <div class="game-card">
+          <div class="game-card-media">
+            <video class="game-card-vid" id="vid-pong" muted playsinline>
+              <source src="pong.mp4" type="video/mp4" />
+            </video>
+            <div class="game-card-preview preview-pong vid-fallback">🏓</div>
+          </div>
+          <div class="game-card-info">
+            <p class="game-card-number">02 ✦</p>
+            <h3 class="game-card-title">Ping Pong</h3>
+            <p class="game-card-sub">Classic two-paddle arcade action — sakura courts and a smiley ball included.</p>
+          </div>
+        </div>
+
+        <!-- CARD 3 — Brick Breaker -->
+        <div class="game-card">
+          <div class="game-card-media">
+            <video class="game-card-vid" id="vid-brick" muted playsinline>
+              <source src="brickbreaker.mp4" type="video/mp4" />
+            </video>
+            <div class="game-card-preview preview-brick vid-fallback">🧱</div>
+          </div>
+          <div class="game-card-info">
+            <p class="game-card-number">03 ✦</p>
+            <h3 class="game-card-title">Brick Breaker</h3>
+            <p class="game-card-sub">Destroy pastel blocks and keep the ball alive — satisfying crunch, cute style.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ BEHIND THE SCENES ════════════ -->
+  <section class="full-section bts-section">
+    <div style="max-width:1200px; margin:0 auto;">
+      <p class="section-label reveal">Behind the Scenes</p>
+      <h2 class="section-title reveal">What powers the hub.</h2>
+      <p class="bts-desc reveal" style="transition-delay:0.05s">A quick look at the technologies and systems that make three games feel like one.</p>
+
+      <div class="bts-grid reveal" style="transition-delay:0.1s">
+
+        <!-- Game Systems — dark -->
+        <div class="bts-card bts-card--highlight">
+          <div class="bts-card-icon">🎮</div>
+          <h3 class="bts-card-title">Game Systems</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">Multiple Games</span>
+            <span class="bts-pill">Scene Management</span>
+            <span class="bts-pill">Collision Detection</span>
+            <span class="bts-pill">Score System</span>
+            <span class="bts-pill">Keyboard Controls</span>
+            <span class="bts-pill">Sprite Animation</span>
+            <span class="bts-pill">Menus &amp; Navigation</span>
+          </div>
+        </div>
+
+        <!-- Framework -->
+        <div class="bts-card bts-card--shade2">
+          <div class="bts-card-icon">🌸</div>
+          <h3 class="bts-card-title">Framework</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">SFML 3</span>
+            <span class="bts-pill bts-pill--purple">Graphics</span>
+            <span class="bts-pill bts-pill--purple">Audio</span>
+            <span class="bts-pill bts-pill--purple">Input Handling</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="bts-card bts-card--shade3">
+          <div class="bts-card-icon">🛠️</div>
+          <h3 class="bts-card-title">Tools</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">Visual Studio</span>
+            <span class="bts-pill">Git</span>
+            <span class="bts-pill">GitHub</span>
+          </div>
+        </div>
+
+        <!-- Language -->
+        <div class="bts-card bts-card--shade4">
+          <div class="bts-card-icon">💻</div>
+          <h3 class="bts-card-title">Language</h3>
+          <div class="bts-pills">
+            <span class="bts-pill">C++</span>
+            <span class="bts-pill">Object-Oriented Programming</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ PAGE NAV FOOTER ════════════ -->
+  <div class="page-nav-footer">
+    <div class="page-nav-back">
+      <a href="index.html#projects" class="page-nav-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+    </div>
+    <div class="page-nav-center">
+      <div class="divider-dot" style="margin:0 auto;"></div>
+    </div>
+    <div class="page-nav-next" style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
+      <p class="page-nav-project-label">Previous Project</p>
+      <p class="page-nav-project-name">Snow Bros Remake</p>
+      <a href="Snowbros.html" class="page-nav-btn page-nav-btn--accent">
+        Snow Bros
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 Maryam Yousaf</span>
+    <span>Pookie Gaming Hub · C++ &amp; SFML</span>
+  </footer>
+
+  <script>
+    /* ── sakura cloud blobs + drifting petals in mockup ── */
+    const sakuraBg = document.getElementById('sakuraBg');
+    // soft cloud blobs
+    const spots = [
+      { w: 130, h: 90,  t: 25, l: 8,  op: 0.28 },
+      { w: 170, h: 110, t: 45, l: 45, op: 0.22 },
+      { w: 100, h: 75,  t: 55, l: 72, op: 0.25 },
+      { w: 110, h: 85,  t: 15, l: 28, op: 0.18 },
+    ];
+    spots.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'sakura-spot';
+      el.style.cssText = `width:${s.w}px;height:${s.h}px;top:${s.t}%;left:${s.l}%;opacity:${s.op};`;
+      sakuraBg.appendChild(el);
+    });
+    // drifting sakura petals
+    const petalChars = ['✿','❀','✦','⋆'];
+    const petalPositions = [10, 25, 52, 68, 82];
+    petalPositions.forEach((lp, i) => {
+      const p = document.createElement('div');
+      p.className = 'sakura-petal';
+      p.textContent = petalChars[i % petalChars.length];
+      p.style.cssText = `left:${lp}%;animation-duration:${4 + i * 1.2}s;animation-delay:${i * 0.7}s;top:-10px;`;
+      sakuraBg.appendChild(p);
+    });
+
+    /* ── menu hover cycling — rotate active item every 1.4s ── */
+    const menuItems = document.querySelectorAll('.menu-item');
+    let activeIdx = 0;
+    setInterval(() => {
+      menuItems[activeIdx].classList.remove('active');
+      activeIdx = (activeIdx + 1) % menuItems.length;
+      menuItems[activeIdx].classList.add('active');
+    }, 1400);
+
+    /* ── ping-pong video loop (forward → reverse → forward)
+          Uses requestAnimationFrame to manually scrub currentTime
+          because playbackRate=-1 is not reliably supported ── */
+    function pingPongVideo(vid) {
+      if (!vid) return;
+
+      let direction = 1;   // 1 = forward, -1 = reverse
+      let lastRaf = null;
+      let lastTime = null;
+      const SPEED = 1.0;   // playback speed multiplier (1 = real-time)
+
+      function step(now) {
+        if (lastTime === null) { lastTime = now; }
+        const delta = (now - lastTime) / 1000; // seconds elapsed
+        lastTime = now;
+
+        if (!vid.paused && !vid.ended && vid.readyState >= 2) {
+          vid.currentTime += direction * SPEED * delta;
+
+          if (direction === 1 && vid.currentTime >= vid.duration - 0.05) {
+            vid.currentTime = vid.duration - 0.05;
+            direction = -1;
+          } else if (direction === -1 && vid.currentTime <= 0.05) {
+            vid.currentTime = 0.05;
+            direction = 1;
+          }
+        }
+
+        lastRaf = requestAnimationFrame(step);
+      }
+
+      // pause native looping — we drive playback manually
+      vid.loop = false;
+      vid.pause();
+
+      vid.addEventListener('loadedmetadata', () => {
+        vid.currentTime = 0;
+        // play() just activates the decode pipeline; we control time ourselves
+        vid.play().then(() => {
+          vid.pause(); // pause immediately — RAF drives currentTime
+          lastRaf = requestAnimationFrame(step);
+        }).catch(() => {
+          // autoplay blocked — start on first user interaction
+          document.addEventListener('click', () => {
+            vid.play().then(() => {
+              vid.pause();
+              lastRaf = requestAnimationFrame(step);
+            }).catch(() => {});
+          }, { once: true });
+        });
+      });
+
+      // fallback: show emoji if video can't load at all
+      vid.addEventListener('error', () => {
+        cancelAnimationFrame(lastRaf);
+        vid.style.display = 'none';
+        const fb = vid.nextElementSibling;
+        if (fb) fb.style.display = 'flex';
+      });
+    }
+
+    pingPongVideo(document.getElementById('vid-snake'));
+    pingPongVideo(document.getElementById('vid-pong'));
+    pingPongVideo(document.getElementById('vid-brick'));
+
+    /* ── cursor trail ── */
+    const starChars  = ['✦','✧','⋆','✿','♡','˖'];
+    const starColors = ['#F7A8C4','#D9779B','#DCCEF8','#BCA4F6','#FFD7E6'];
+    document.addEventListener('mousemove', (e) => {
+      if (Math.random() > 0.35) return;
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.textContent = starChars[Math.floor(Math.random() * starChars.length)];
+      star.style.left  = e.clientX + 'px';
+      star.style.top   = e.clientY + 'px';
+      star.style.color = starColors[Math.floor(Math.random() * starColors.length)];
+      star.style.fontSize = (10 + Math.random() * 8) + 'px';
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 850);
+    });
+
+    /* ── scroll: progress bar + nav hide ── */
+    const progressBar = document.getElementById('progress-bar');
+    const navbar = document.getElementById('navbar');
+    let lastY = 0, ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          progressBar.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+          if (y > lastY + 6) navbar.classList.add('hide');
+          else if (y < lastY - 4) navbar.classList.remove('hide');
+          lastY = y;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* ── mobile toggle ── */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* ── scroll reveal ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  </script>
+</body>
+</html>
