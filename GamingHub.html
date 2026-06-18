@@ -348,7 +348,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* FIX 2: Updated preview screen — bigger heart, lower, no dots */
     .preview-game-screen {
       background: linear-gradient(160deg, #FFE8F0 0%, #FFC8DC 40%, #FFD4E8 100%);
       height: 340px;
@@ -425,7 +424,6 @@
     .menu-item:hover { background: rgba(217,96,154,0.22); }
     .menu-item.active { background: rgba(217,96,154,0.18); }
 
-    /* FIX 2: Heart is bigger (4.2rem) and positioned lower (top: 110px) */
     .menu-heart {
       position: absolute;
       right: 14%;
@@ -440,7 +438,6 @@
       50%       { transform: translateY(-8px) scale(1.05); }
     }
 
-    /* FIX 2: Watermark kept but dots removed entirely */
     .menu-watermark {
       position: absolute;
       bottom: 10px;
@@ -546,10 +543,10 @@
 
     /* ── MINI ARCADE ── */
     .arcade-section {
-      background: linear-gradient(135deg, #FFF8FC 0%, #FFEAF4 40%, #F7F0FF 100%);
+      background: linear-gradient(160deg, #F7A8C4 0%, #E890B0 40%, #D9779B 100%);
     }
-    .arcade-section .section-label { color: var(--rose-darker); }
-    .arcade-section .section-label::before { background: var(--rose-darker); }
+    .arcade-section .section-label { color: var(--text-dark); }
+    .arcade-section .section-label::before { background: var(--text-dark); }
     .arcade-section .section-title { color: var(--text-dark); }
 
     .arcade-cards {
@@ -564,7 +561,7 @@
       background: rgba(255,255,255,0.72);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(247,168,196,0.3);
+      border: 1.5px solid #C12767;
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 6px 32px rgba(74,60,72,0.08);
@@ -583,17 +580,18 @@
     }
     .game-card:nth-child(even) > * { direction: ltr; }
 
-    /* FIX 3: Image-based media block replacing video */
     .game-card-media {
       width: 100%;
-      height: 260px;
+      aspect-ratio: 1003 / 853;
       overflow: hidden;
       position: relative;
+      background: #FFE5EC;
     }
     .game-card-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       display: block;
     }
 
@@ -625,11 +623,12 @@
 
     /* ── BEHIND THE SCENES ── */
     .bts-section {
-      background: linear-gradient(160deg, #F7A8C4 0%, #E890B0 40%, #D9779B 100%);
+      background: linear-gradient(135deg, #FFF8FC 0%, #FFEAF4 40%, #F7F0FF 100%);
     }
-    .bts-section .section-label { color: var(--text-dark); }
-    .bts-section .section-label::before { background: var(--text-dark); }
+    .bts-section .section-label { color: var(--rose-darker); }
+    .bts-section .section-label::before { background: var(--rose-darker); }
     .bts-section .section-title { color: var(--text-dark); }
+    .bts-section .bts-desc { color: var(--text-muted); }
 
     .bts-desc {
       font-size: 1rem;
@@ -837,7 +836,7 @@
       .bts-grid { grid-template-columns: repeat(2, 1fr); }
       .game-card { grid-template-columns: 1fr !important; direction: ltr !important; }
       .game-card:nth-child(even) { direction: ltr !important; }
-      .game-card-media { height: 200px; }
+      .game-card-media { aspect-ratio: 1003 / 853; }
       .page-nav-footer { grid-template-columns: 1fr; gap: 1.5rem; text-align: center !important; }
       .page-nav-back, .page-nav-next { text-align: center; }
     }
@@ -933,7 +932,6 @@
         </div>
       </div>
 
-      <!-- animated mockup window -->
       <div class="hero-preview">
         <div class="hero-preview-frame">
           <div class="preview-titlebar">
@@ -944,10 +942,8 @@
           </div>
           <div class="preview-game-screen" id="gamePreview">
             <div class="sakura-bg" id="sakuraBg"></div>
-
             <div class="menu-title">Gaming Hub</div>
             <div class="menu-mute">🔊</div>
-
             <div class="menu-panel" id="menuPanel">
               <div class="menu-item active">Ping Pong</div>
               <div class="menu-item">Feed The Snake</div>
@@ -955,10 +951,7 @@
               <div class="menu-item">LeaderBoard</div>
               <div class="menu-item">Exit</div>
             </div>
-
-            <!-- FIX 2: Bigger heart (4.2rem), lower position (top:110px), no dots at all -->
             <div class="menu-heart">🩷</div>
-
             <div class="menu-watermark">meow meow meow</div>
           </div>
         </div>
@@ -987,7 +980,7 @@
           </div>
           <div class="stat-card">
             <div class="stat-number">♡</div>
-            <div class="stat-label">Pastel pookie aesthetic throughout</div>
+            <div class="stat-label">Pastel aesthetic throughout</div>
           </div>
           <div class="stat-card">
             <div class="stat-number">OOP</div>
@@ -1006,7 +999,7 @@
 
       <div class="arcade-cards reveal" style="transition-delay:0.1s">
 
-        <!-- FIX 3: CARD 1 — Feed the Snake — using image -->
+        <!-- CARD 1: Feed the Snake -->
         <div class="game-card">
           <div class="game-card-media">
             <img src="snake.output.png" alt="Feed the Snake gameplay screenshot" />
@@ -1014,11 +1007,11 @@
           <div class="game-card-info">
             <p class="game-card-number">01 ✦</p>
             <h3 class="game-card-title">Feed the Snake</h3>
-            <p class="game-card-sub">Grow longer and chase high scores — classic snake with a pookie twist.</p>
+            <p class="game-card-sub">Grow longer and chase high scores — classic snake with a pastel twist.</p>
           </div>
         </div>
 
-        <!-- FIX 3: CARD 2 — Ping Pong — using image -->
+        <!-- CARD 2: Ping Pong -->
         <div class="game-card">
           <div class="game-card-media">
             <img src="pong.output.png" alt="Ping Pong gameplay screenshot" />
@@ -1030,7 +1023,7 @@
           </div>
         </div>
 
-        <!-- FIX 3: CARD 3 — Brick Breaker — using image -->
+        <!-- CARD 3: Brick Breaker -->
         <div class="game-card">
           <div class="game-card-media">
             <img src="brickbreak.output.png" alt="Brick Breaker gameplay screenshot" />
@@ -1130,7 +1123,6 @@
   </footer>
 
   <script>
-    /* sakura cloud blobs + drifting petals in mockup */
     const sakuraBg = document.getElementById('sakuraBg');
     const spots = [
       { w: 130, h: 90,  t: 25, l: 8,  op: 0.28 },
@@ -1154,7 +1146,6 @@
       sakuraBg.appendChild(p);
     });
 
-    /* menu hover cycling */
     const menuItems = document.querySelectorAll('.menu-item');
     let activeIdx = 0;
     setInterval(() => {
@@ -1163,7 +1154,6 @@
       menuItems[activeIdx].classList.add('active');
     }, 1400);
 
-    /* cursor trail */
     const starChars  = ['✦','✧','⋆','✿','♡','˖'];
     const starColors = ['#F7A8C4','#D9779B','#DCCEF8','#BCA4F6','#FFD7E6'];
     document.addEventListener('mousemove', (e) => {
@@ -1179,7 +1169,6 @@
       setTimeout(() => star.remove(), 850);
     });
 
-    /* scroll: progress bar + nav hide */
     const progressBar = document.getElementById('progress-bar');
     const navbar = document.getElementById('navbar');
     let lastY = 0, ticking = false;
@@ -1198,7 +1187,6 @@
       }
     }, { passive: true });
 
-    /* mobile toggle */
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => {
@@ -1212,7 +1200,6 @@
       });
     });
 
-    /* scroll reveal */
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
