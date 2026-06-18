@@ -586,16 +586,8 @@ section {
 #about .section-label {
   color: var(--lavender);
   margin-bottom: 2rem;
-  justify-content: flex-end;
 }
 #about .section-label::before {
-  display: none;
-}
-#about .section-label::after {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 1px;
   background: var(--lavender);
 }
 #about .section-title {
@@ -1656,10 +1648,11 @@ footer {
   z-index: 1;
   width: min(800px, 90vw);
   max-height: 88vh;
-  background: var(--white);
+  background: var(--purple-dk);
+  border: 1px solid rgba(196, 174, 222, 0.15);
   border-radius: 20px;
   padding: 1.75rem 1.75rem 1.5rem;
-  box-shadow: 0 30px 80px rgba(28, 15, 46, 0.45);
+  box-shadow: 0 30px 80px rgba(28, 15, 46, 0.65);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1678,9 +1671,9 @@ footer {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: none;
-  background: rgba(61, 31, 107, 0.08);
-  color: var(--purple-mid);
+  border: 1px solid rgba(196, 174, 222, 0.25);
+  background: rgba(196, 174, 222, 0.1);
+  color: var(--lavender-lt);
   font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
@@ -1692,7 +1685,7 @@ footer {
 }
 
 .uiux-modal-close:hover {
-  background: rgba(61, 31, 107, 0.16);
+  background: rgba(196, 174, 222, 0.2);
   transform: rotate(90deg);
 }
 
@@ -1711,7 +1704,7 @@ footer {
   aspect-ratio: 16 / 10;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--card-bg);
+  background: #1A1008;
 }
 
 .uiux-slide {
@@ -1720,7 +1713,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: var(--card-bg);
+  background: #1A1008;
   opacity: 0;
   transition: opacity 0.45s ease;
   pointer-events: none;
@@ -1736,9 +1729,9 @@ footer {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid rgba(61, 31, 107, 0.25);
-  background: var(--white);
-  color: var(--purple-mid);
+  border: 1px solid rgba(196, 174, 222, 0.25);
+  background: rgba(196, 174, 222, 0.08);
+  color: var(--lavender-lt);
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
@@ -1749,7 +1742,7 @@ footer {
 }
 
 .uiux-arrow:hover {
-  background: rgba(61, 31, 107, 0.08);
+  background: rgba(196, 174, 222, 0.18);
   transform: scale(1.08);
 }
 
@@ -1764,18 +1757,18 @@ footer {
   height: 9px;
   border-radius: 50%;
   border: none;
-  background: rgba(61, 31, 107, 0.2);
+  background: rgba(196, 174, 222, 0.25);
   cursor: pointer;
   padding: 0;
   transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .uiux-dot-btn:hover {
-  background: rgba(61, 31, 107, 0.4);
+  background: rgba(196, 174, 222, 0.5);
 }
 
 .uiux-dot-btn.active {
-  background: var(--purple-mid);
+  background: var(--lavender);
   transform: scale(1.25);
 }
 
