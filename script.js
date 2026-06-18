@@ -250,7 +250,7 @@ const uiuxDotBtns      = document.querySelectorAll('#uiuxDots .uiux-dot-btn');
 const uiuxPrevBtn      = document.getElementById('uiuxPrev');
 const uiuxNextBtn      = document.getElementById('uiuxNext');
 
-const UIUX_AUTOPLAY_MS = 3500;   // time between auto-advances
+const UIUX_AUTOPLAY_MS = 2000;   // time between auto-advances
 const UIUX_RESUME_MS   = 6000;   // how long to wait after manual input before autoplay resumes
 
 let uiuxCurrent       = 0;
